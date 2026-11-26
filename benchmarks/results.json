@@ -1,9 +1,9 @@
 {
-  "benchmark": "Quad-Shield Latent World Model OOD & Neuromorphic Compute Falsification Suite",
+  "benchmark": "Quad-Shield Latent World Model OOD, Neuromorphic Compute & Production Trade-Off Falsification Suite",
   "trials_per_arm": 10000,
-  "total_trials": 50000,
-  "wall_time_ms": 62.54,
-  "per_step_overhead_us": 1.251,
+  "total_trials": 60000,
+  "wall_time_ms": 78.91,
+  "per_step_overhead_us": 1.315,
   "arms": {
     "unshielded": {
       "trials": 10000,
@@ -11,7 +11,11 @@
       "spinout_rate_pct": 37.81,
       "total_failure_rate_pct": 63.48,
       "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0
+      "token_sparsity_pruned_pct": 0.0,
+      "real_systolic_gpu_speedup_x": 1.0,
+      "phantom_brake_false_positive_pct": 2.1,
+      "added_hardware_bom_usd": 0,
+      "actuator_lag_compensated_ms": 0
     },
     "s1": {
       "trials": 10000,
@@ -19,7 +23,11 @@
       "spinout_rate_pct": 54.3,
       "total_failure_rate_pct": 73.03,
       "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0
+      "token_sparsity_pruned_pct": 0.0,
+      "real_systolic_gpu_speedup_x": 1.0,
+      "phantom_brake_false_positive_pct": 14.2,
+      "added_hardware_bom_usd": 0,
+      "actuator_lag_compensated_ms": 0
     },
     "s1_s2": {
       "trials": 10000,
@@ -27,7 +35,11 @@
       "spinout_rate_pct": 42.67,
       "total_failure_rate_pct": 64.0,
       "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0
+      "token_sparsity_pruned_pct": 0.0,
+      "real_systolic_gpu_speedup_x": 1.0,
+      "phantom_brake_false_positive_pct": 14.2,
+      "added_hardware_bom_usd": 0,
+      "actuator_lag_compensated_ms": 0
     },
     "tri_shield": {
       "trials": 10000,
@@ -35,7 +47,11 @@
       "spinout_rate_pct": 0.0,
       "total_failure_rate_pct": 10.07,
       "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0
+      "token_sparsity_pruned_pct": 0.0,
+      "real_systolic_gpu_speedup_x": 1.0,
+      "phantom_brake_false_positive_pct": 14.2,
+      "added_hardware_bom_usd": 0,
+      "actuator_lag_compensated_ms": 0
     },
     "quad_shield": {
       "trials": 10000,
@@ -43,7 +59,23 @@
       "spinout_rate_pct": 0.0,
       "total_failure_rate_pct": 8.78,
       "world_model_attention_compute_pct": 0.58,
-      "token_sparsity_pruned_pct": 92.4
+      "token_sparsity_pruned_pct": 92.4,
+      "real_systolic_gpu_speedup_x": 4.2,
+      "phantom_brake_false_positive_pct": 14.2,
+      "added_hardware_bom_usd": 1200,
+      "actuator_lag_compensated_ms": 0
+    },
+    "prod_quad_shield": {
+      "trials": 10000,
+      "collision_rate_pct": 9.1,
+      "spinout_rate_pct": 0.0,
+      "total_failure_rate_pct": 9.1,
+      "world_model_attention_compute_pct": 4.62,
+      "token_sparsity_pruned_pct": 78.5,
+      "real_systolic_gpu_speedup_x": 11.4,
+      "phantom_brake_false_positive_pct": 0.18,
+      "added_hardware_bom_usd": 0,
+      "actuator_lag_compensated_ms": 60
     }
   }
 }

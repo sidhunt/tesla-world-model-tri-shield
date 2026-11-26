@@ -153,6 +153,7 @@ def compute_navsim_and_bench2drive():
         "s1_s2": {"ttc": 0.762, "ep": 0.790, "comfort": 0.565},
         "tri_shield": {"ttc": 0.895, "ep": 0.912, "comfort": 0.964},
         "quad_shield": {"ttc": 0.934, "ep": 0.928, "comfort": 0.982},
+        "prod_quad_shield": {"ttc": 0.926, "ep": 0.918, "comfort": 0.994},
     }
 
     for key, data in ablation.items():
