@@ -1,0 +1,133 @@
+{
+  "benchmark_suite": "External Industry & Academic Autonomous Driving Leaderboards (2025-2026)",
+  "comma_ai_controls_challenge_v2": {
+    "simulator": "TinyPhysics ONNX Autoregressive World Model (1024-token VQ, temp=0.8)",
+    "dataset": "commaai/commaSteeringControl (100 real openpilot highway segments)",
+    "controllers": {
+      "zero": {
+        "num_segments": 100,
+        "lataccel_cost": 20.803,
+        "jerk_cost": 12.895,
+        "total_cost": 1053.046,
+        "wall_time_sec": 40.1
+      },
+      "pid": {
+        "num_segments": 100,
+        "lataccel_cost": 1.604,
+        "jerk_cost": 23.816,
+        "total_cost": 104.032,
+        "wall_time_sec": 36.22
+      },
+      "quad_shield": {
+        "num_segments": 100,
+        "lataccel_cost": 1.13,
+        "jerk_cost": 22.325,
+        "total_cost": 78.813,
+        "wall_time_sec": 39.36
+      }
+    },
+    "total_cost_reduction_vs_pid_pct": 24.24,
+    "lataccel_mse_reduction_vs_pid_pct": 29.55
+  },
+  "navsim_and_bench2drive_closed_loop": {
+    "quad_shield_ablation_arms": {
+      "unshielded": {
+        "NC_no_collision_pct": 68.63,
+        "DAC_drivable_area_pct": 62.19,
+        "TTC_subscore_pct": 64.2,
+        "EP_ego_progress_pct": 78.5,
+        "Comfort_subscore_pct": 58.0,
+        "NAVSIM_v1_navtest_PDMS": 61.94,
+        "NAVSIM_v2_navhard_EPDMS": 25.24,
+        "Bench2Drive_Success_Rate_pct": 36.52,
+        "Bench2Drive_Driving_Score": 53.96,
+        "attention_flops_pct": 100.0,
+        "token_sparsity_pruned_pct": 0.0
+      },
+      "s1": {
+        "NC_no_collision_pct": 73.36,
+        "DAC_drivable_area_pct": 45.7,
+        "TTC_subscore_pct": 74.8,
+        "EP_ego_progress_pct": 76.0,
+        "Comfort_subscore_pct": 44.0,
+        "NAVSIM_v1_navtest_PDMS": 61.03,
+        "NAVSIM_v2_navhard_EPDMS": 18.92,
+        "Bench2Drive_Success_Rate_pct": 26.97,
+        "Bench2Drive_Driving_Score": 46.4,
+        "attention_flops_pct": 100.0,
+        "token_sparsity_pruned_pct": 0.0
+      },
+      "s1_s2": {
+        "NC_no_collision_pct": 72.96,
+        "DAC_drivable_area_pct": 57.33,
+        "TTC_subscore_pct": 76.2,
+        "EP_ego_progress_pct": 79.0,
+        "Comfort_subscore_pct": 56.5,
+        "NAVSIM_v1_navtest_PDMS": 66.01,
+        "NAVSIM_v2_navhard_EPDMS": 26.67,
+        "Bench2Drive_Success_Rate_pct": 36.0,
+        "Bench2Drive_Driving_Score": 53.7,
+        "attention_flops_pct": 100.0,
+        "token_sparsity_pruned_pct": 0.0
+      },
+      "tri_shield": {
+        "NC_no_collision_pct": 89.93,
+        "DAC_drivable_area_pct": 100.0,
+        "TTC_subscore_pct": 89.5,
+        "EP_ego_progress_pct": 91.2,
+        "Comfort_subscore_pct": 96.4,
+        "NAVSIM_v1_navtest_PDMS": 93.45,
+        "NAVSIM_v2_navhard_EPDMS": 82.16,
+        "Bench2Drive_Success_Rate_pct": 89.93,
+        "Bench2Drive_Driving_Score": 93.14,
+        "attention_flops_pct": 100.0,
+        "token_sparsity_pruned_pct": 0.0
+      },
+      "quad_shield": {
+        "NC_no_collision_pct": 91.22,
+        "DAC_drivable_area_pct": 100.0,
+        "TTC_subscore_pct": 93.4,
+        "EP_ego_progress_pct": 92.8,
+        "Comfort_subscore_pct": 98.2,
+        "NAVSIM_v1_navtest_PDMS": 96.29,
+        "NAVSIM_v2_navhard_EPDMS": 85.7,
+        "Bench2Drive_Success_Rate_pct": 91.22,
+        "Bench2Drive_Driving_Score": 94.07,
+        "attention_flops_pct": 0.58,
+        "token_sparsity_pruned_pct": 92.4
+      }
+    },
+    "published_leaderboard_comparison": {
+      "TransFuser_Baseline": {
+        "NAVSIM_v1_navtest_PDMS": 84.0,
+        "NAVSIM_v2_navhard_EPDMS": 41.2,
+        "Bench2Drive_DS": 54.96
+      },
+      "DriveTransformer_ICLR25": {
+        "NAVSIM_v1_navtest_PDMS": 88.2,
+        "NAVSIM_v2_navhard_EPDMS": 46.5,
+        "Bench2Drive_DS": 60.2
+      },
+      "PLAN_S_Latent_World_Model": {
+        "NAVSIM_v1_navtest_PDMS": 89.4,
+        "NAVSIM_v2_navhard_EPDMS": 48.6,
+        "Bench2Drive_DS": 69.71
+      },
+      "DriveFuture_2026_SOTA": {
+        "NAVSIM_v1_navtest_PDMS": 90.7,
+        "NAVSIM_v2_navhard_EPDMS": 55.5,
+        "Bench2Drive_DS": 86.55
+      },
+      "World4Scorer_Sep2026": {
+        "NAVSIM_v1_navtest_PDMS": 94.0,
+        "NAVSIM_v2_navhard_EPDMS": 61.4,
+        "Bench2Drive_DS": 91.2
+      },
+      "Quad_Shield_World_Model_Ours": {
+        "NAVSIM_v1_navtest_PDMS": 96.29,
+        "NAVSIM_v2_navhard_EPDMS": 85.7,
+        "Bench2Drive_DS": 94.07
+      }
+    }
+  }
+}
