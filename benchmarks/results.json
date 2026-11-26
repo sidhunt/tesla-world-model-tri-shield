@@ -1,33 +1,49 @@
 {
-  "benchmark": "Tri-Shield Latent World Model OOD Falsification Suite",
+  "benchmark": "Quad-Shield Latent World Model OOD & Neuromorphic Compute Falsification Suite",
   "trials_per_arm": 10000,
-  "total_trials": 40000,
-  "wall_time_ms": 43.12,
-  "per_step_overhead_us": 1.078,
+  "total_trials": 50000,
+  "wall_time_ms": 62.54,
+  "per_step_overhead_us": 1.251,
   "arms": {
     "unshielded": {
       "trials": 10000,
-      "collision_rate_pct": 18.17,
-      "spinout_rate_pct": 49.21,
-      "total_failure_rate_pct": 61.22
+      "collision_rate_pct": 31.37,
+      "spinout_rate_pct": 37.81,
+      "total_failure_rate_pct": 63.48,
+      "world_model_attention_compute_pct": 100.0,
+      "token_sparsity_pruned_pct": 0.0
     },
     "s1": {
       "trials": 10000,
-      "collision_rate_pct": 12.15,
-      "spinout_rate_pct": 71.55,
-      "total_failure_rate_pct": 74.89
+      "collision_rate_pct": 26.64,
+      "spinout_rate_pct": 54.3,
+      "total_failure_rate_pct": 73.03,
+      "world_model_attention_compute_pct": 100.0,
+      "token_sparsity_pruned_pct": 0.0
     },
     "s1_s2": {
       "trials": 10000,
-      "collision_rate_pct": 12.32,
-      "spinout_rate_pct": 55.21,
-      "total_failure_rate_pct": 61.16
+      "collision_rate_pct": 27.04,
+      "spinout_rate_pct": 42.67,
+      "total_failure_rate_pct": 64.0,
+      "world_model_attention_compute_pct": 100.0,
+      "token_sparsity_pruned_pct": 0.0
     },
     "tri_shield": {
       "trials": 10000,
-      "collision_rate_pct": 5.58,
+      "collision_rate_pct": 10.07,
       "spinout_rate_pct": 0.0,
-      "total_failure_rate_pct": 5.58
+      "total_failure_rate_pct": 10.07,
+      "world_model_attention_compute_pct": 100.0,
+      "token_sparsity_pruned_pct": 0.0
+    },
+    "quad_shield": {
+      "trials": 10000,
+      "collision_rate_pct": 8.78,
+      "spinout_rate_pct": 0.0,
+      "total_failure_rate_pct": 8.78,
+      "world_model_attention_compute_pct": 0.58,
+      "token_sparsity_pruned_pct": 92.4
     }
   }
 }
