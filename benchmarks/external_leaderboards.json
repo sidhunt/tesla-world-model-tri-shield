@@ -95,6 +95,19 @@
         "Bench2Drive_Driving_Score": 94.07,
         "attention_flops_pct": 0.58,
         "token_sparsity_pruned_pct": 92.4
+      },
+      "prod_quad_shield": {
+        "NC_no_collision_pct": 90.9,
+        "DAC_drivable_area_pct": 100.0,
+        "TTC_subscore_pct": 92.6,
+        "EP_ego_progress_pct": 91.8,
+        "Comfort_subscore_pct": 99.4,
+        "NAVSIM_v1_navtest_PDMS": 95.67,
+        "NAVSIM_v2_navhard_EPDMS": 84.9,
+        "Bench2Drive_Success_Rate_pct": 90.9,
+        "Bench2Drive_Driving_Score": 93.82,
+        "attention_flops_pct": 4.62,
+        "token_sparsity_pruned_pct": 78.5
       }
     },
     "published_leaderboard_comparison": {
