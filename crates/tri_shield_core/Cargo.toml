@@ -1,0 +1,8 @@
+[package]
+name = "tri_shield_core"
+version = "0.1.0"
+edition = "2021"
+description = "Sub-millisecond Tri-Shield Supervisor for Latent World Models (Airbus Hamiltonian Envelope + Postgres WAL-JEPA + HFT CBF Gateway)"
+license = "MIT"
+
+[dependencies]

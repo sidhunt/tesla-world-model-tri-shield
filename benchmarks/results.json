@@ -1,0 +1,33 @@
+{
+  "benchmark": "Tri-Shield Latent World Model OOD Falsification Suite",
+  "trials_per_arm": 10000,
+  "total_trials": 40000,
+  "wall_time_ms": 43.12,
+  "per_step_overhead_us": 1.078,
+  "arms": {
+    "unshielded": {
+      "trials": 10000,
+      "collision_rate_pct": 18.17,
+      "spinout_rate_pct": 49.21,
+      "total_failure_rate_pct": 61.22
+    },
+    "s1": {
+      "trials": 10000,
+      "collision_rate_pct": 12.15,
+      "spinout_rate_pct": 71.55,
+      "total_failure_rate_pct": 74.89
+    },
+    "s1_s2": {
+      "trials": 10000,
+      "collision_rate_pct": 12.32,
+      "spinout_rate_pct": 55.21,
+      "total_failure_rate_pct": 61.16
+    },
+    "tri_shield": {
+      "trials": 10000,
+      "collision_rate_pct": 5.58,
+      "spinout_rate_pct": 0.0,
+      "total_failure_rate_pct": 5.58
+    }
+  }
+}
