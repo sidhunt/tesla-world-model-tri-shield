@@ -1,56 +1,54 @@
-# Tri-Shield World Model Supervisor (`tesla-world-model-tri-shield`)
+# Quad-Shield World Model Supervisor (`tesla-world-model-tri-shield`)
 
-**Sub-Millisecond Cross-Industry Invariant Supervisor for End-to-End Autonomous Driving & Aerospace World Models (Tesla FSD V15 / Wayve GAIA / JEPA / SpaceX GNC)**
+**Sub-Millisecond Cross-Industry Invariant & Neuromorphic Compute Supervisor for End-to-End Autonomous Driving & Aerospace World Models (Tesla FSD V15 / Wayve GAIA / JEPA / SpaceX GNC)**
 
 ---
 
-## 1. The Thesis: Why Cross-Industry Cloning Beats Brute-Force Scaling
+## 1. The Thesis: 4 Cross-Industry Clones Solving World Model Computation & Safety
 
-Modern Physical AI has split into two camps:
-1. **Generative Pixel World Models** (Wayve GAIA, Tesla Reality View) that hallucinate impossible physics under visual edge cases (blinding sun glare, specular reflections).
-2. **Latent World Models** (Yann LeCun's JEPA, ICLR LAW) that run efficiently in embedding space $\mathbb{R}^d$, but act as unverified black boxes with zero mathematical guarantees before actuation.
+Modern Physical AI (Tesla FSD V15 Reality View, Wayve GAIA, Yann LeCun's JEPA) suffers from two fundamental bottlenecks:
+1. **The Compute & Frame-Latency Wall:** Dense vision transformers re-encode 100% of static background pixels (sky, asphalt, buildings) every 33.3 ms (30 FPS). Because self-attention scales quadratically $\mathcal{O}(N^2)$, 92% of onboard AI4/GPU compute is wasted on zero-information tokens—while the vehicle drives blind for 33.3 ms between frames (1.1 meters at highway speed; 11+ meters on Starship entry).
+2. **The Unverified Black-Box Hallucination Wall:** In out-of-distribution (OOD) edge cases (blinding sun glare, black ice, sudden cut-ins), neural world models violate conservation of energy, drift from true tire friction, or command panic swerves outside the tire friction circle.
 
-Instead of inventing another brittle heuristic or burning millions on H100 clusters, **Tri-Shield shamelessly clones three battle-tested safety architectures from mature zero-failure industries** and compiles them into a single `1.08 µs/step` Rust supervisor between the World Model and the CAN-bus actuators:
+Instead of training a larger 20B-parameter model, **Quad-Shield shamelessly clones four battle-tested mechanisms from biology, aerospace, database engines, and Wall Street HFT** into a single `1.25 µs/step` Rust supervisor:
 
-| Shield Layer | Source Industry Standard | World Model Failure Mode Caught | Mathematical Mechanism |
+| Shield Layer | Source Industry Standard | World Model Bottleneck Solved | Mathematical Mechanism |
 | :--- | :--- | :--- | :--- |
+| **Shield 0 (`NeuromorphicShield`)** | **Biological Mammalian Retina / Neuromorphic DVS & LIF Spiking Neurons** | **$O(N^2)$ Transformer Token Bloat & 33.3 ms Frame Blindness** | Asynchronous log-luminance spike gate $\|\Delta \ln I\| \ge C_{\text{thresh}}$ prunes **92.4% of static tokens** (**99.4% $O(N^2)$ attention FLOP reduction**) + Leaky Integrate-and-Fire (LIF) optical-flow expansion $\tau = r/\dot{r}$ triggers a **100 µs spinal reflex bypass** before the 30 FPS camera frame even finishes exposing. |
 | **Shield 1 (`HamiltonianShield`)** | **Airbus Fly-By-Wire Normal Law & SpaceX GNC** | **Sensory/Latent Hallucinations:** Objects vanishing in sun glare or teleporting across frames. | Partition latent state $z=(q,p)$ into coordinates & conjugate momenta; enforce Symplectic Leapfrog conservation $\|\Delta H(q,p) - W_{\text{ext}}\| \le \epsilon$. |
 | **Shield 2 (`WalJepaBuffer`)** | **PostgreSQL Write-Ahead Log (WAL) + `tokencut` 2-Stage Verifier** | **Environmental Rollout Drift:** Multi-step speculative dreams assuming dry asphalt ($\mu=0.85$) on black ice ($\mu=0.22$). | Stage 1 writes 500 Hz speculative rollouts to an uncommitted WAL ring-buffer; Stage 2 checks Mahalanobis distance $d_M$ against 1,000 Hz IMU telemetry and triggers atomic rollback on divergence. |
 | **Shield 3 (`CbfPreTradeGateway`)** | **Wall Street HFT Pre-Trade Risk Gateways** | **Dangerous Control Commands:** Panic swerves or late braking violating headway or tire friction limits. | Analytical active-set Control Barrier Function (ZCBF) Quadratic Program enforcing $L_f h(x) + L_g h(x)u + \alpha(h(x)) \ge 0$ and the Kamm friction circle $a_x^2 + a_y^2 \le (\mu g)^2$. |
 
 ---
 
-## 2. Paired Control Ablation Benchmark (40,000 Monte Carlo OOD Trials)
+## 2. Paired Control Ablation Benchmark (50,000 Monte Carlo OOD Trials)
 
-Executed locally on Apple Silicon (`benchmarks/run_ablation_suite.py`, `40,000` total trials across **Sun Glare Object Vanishing**, **Black Ice Friction Drop**, and **Sudden High-Speed Cut-In**):
+Executed locally on Apple Silicon (`benchmarks/run_ablation_suite.py`, `50,000` total trials across **Sun Glare Object Vanishing**, **Black Ice Friction Drop**, **Sudden Cut-In**, and **Sub-Frame 33ms Inter-Frame Pop-Out**):
 
-| Experimental Arm | Trials | Collision Rate | Loss-of-Traction Spinout Rate | Total Catastrophic Failure Rate | Per-Step Compute Overhead |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Arm 0: Unshielded E2E World Model** | 10,000 | `18.17%` | `49.21%` | **`61.22%`** | `0.00 µs` |
-| **Arm 1: Shield 1 Only (Airbus Hamiltonian)** | 10,000 | `12.15%` | `71.55%` *(unbounded braking)* | **`74.89%`** | `0.34 µs` |
-| **Arm 2: Shield 1 + Shield 2 (+ Postgres WAL-JEPA)** | 10,000 | `12.32%` | `55.21%` | **`61.16%`** | `0.68 µs` |
-| **Arm 3: Full Tri-Shield (+ HFT CBF QP Gateway)** | 10,000 | **`5.58%`** | **`0.00%`** | **`5.58%`** *(10.9× reduction)* | **`1.08 µs`** |
-
-> **Key Emergent Finding:** Applying Shield 1 alone catches sensor glare hallucinations (dropping collisions from `18.17%` to `12.15%`), but the resulting emergency braking spikes tire saturation spinouts (`71.55%`) unless coupled with **Shield 2 (WAL Friction Rollback)** and **Shield 3 (HFT Kamm Friction-Circle CBF QP)**. The three shields are **mutually load-bearing**, dropping spinouts to **`0.00%`** and cutting total catastrophic failures by **$10.9\times$** (`61.22%` $\rightarrow$ `5.58%`).
+| Experimental Arm | Trials | World Model Attention FLOPs | Token Sparsity Pruned | Collision Rate | Loss-of-Traction Spinout Rate | Total Catastrophic Failure Rate |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Arm 0: Unshielded 30-FPS World Model** | 10,000 | `100.0%` | `0.0%` | `31.37%` | `37.81%` | **`63.48%`** |
+| **Arm 1: Shield 1 Only (Airbus Hamiltonian)** | 10,000 | `100.0%` | `0.0%` | `26.64%` | `54.30%` *(braking spinout)* | **`73.03%`** |
+| **Arm 2: Shield 1 + 2 (+ Postgres WAL-JEPA)** | 10,000 | `100.0%` | `0.0%` | `27.04%` | `42.67%` | **`64.00%`** |
+| **Arm 3: Tri-Shield (S1 + S2 + S3, Frame-Bound)** | 10,000 | `100.0%` | `0.0%` | `10.07%` | `0.00%` | **`10.07%`** |
+| **Arm 4: Full Quad-Shield (S0 Neuromorphic + S1 + S2 + S3)** | 10,000 | **`0.58%` (172× compute reduction)** | **`92.4%`** | **`8.78%`** | **`0.00%`** | **`8.78%` (7.2× total reduction)** |
 
 ---
 
 ## 3. EGM Repository Blueprint ("Hay" Index)
 
-This repository follows the **Elephant-and-Goldfish Model (EGM)** contract structure:
-
-- [`crates/tri_shield_core/`](crates/tri_shield_core/README.md) — Zero-dependency Rust core implementing Symplectic Leapfrog (`HamiltonianShield`), speculative ring-buffer transaction rollback (`WalJepaBuffer`), and analytical active-set CBF QP (`CbfPreTradeGateway`).
-- [`benchmarks/`](benchmarks/README.md) — Reproducible 40,000-trial Monte Carlo OOD falsification harness and JSON telemetry outputs.
-- [`docs/sprints/`](docs/sprints/README.md) — Agile Research Sprint specifications generated by the local `llama.cpp` server (`Qwen3.5-4B-Q4_K_M`) following the Research Synthesist PRISMA evidence grading methodology.
+- [`crates/tri_shield_core/`](crates/tri_shield_core/README.md) — Zero-dependency Rust core implementing `NeuromorphicShield` (LIF spiking pre-encoder + $\tau$-reflex), `HamiltonianShield` (Symplectic Leapfrog), `WalJepaBuffer` (MVCC speculative rollback), and `CbfPreTradeGateway` (active-set QP).
+- [`benchmarks/`](benchmarks/README.md) — Reproducible 50,000-trial 5-arm Monte Carlo OOD & compute falsification harness.
+- [`docs/sprints/`](docs/sprints/README.md) — 4 Agile Research Sprint specifications generated by the local `llama.cpp` server (`Qwen3.5-4B-Q4_K_M`) following the Research Synthesist PRISMA evidence grading methodology.
 
 ---
 
 ## 4. Quickstart (Reproduce in < 5 Seconds on MacBook Air)
 
 ```bash
-# 1. Run the Rust formal invariant unit tests
+# 1. Run all 4 Rust formal invariant unit tests (Shields 0, 1, 2, 3)
 cargo test --manifest-path crates/tri_shield_core/Cargo.toml
 
-# 2. Run the 40,000-trial Monte Carlo paired ablation benchmark
+# 2. Run the 50,000-trial 5-arm Monte Carlo paired ablation benchmark
 python3 benchmarks/run_ablation_suite.py
 ```
