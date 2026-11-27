@@ -2,3 +2,7 @@ target/
 __pycache__/
 *.pyc
 .DS_Store
+.venv/
+*.log
+benchmarks/sprint4_neuromorphic_world_model.json
+

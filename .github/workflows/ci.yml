@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-rust:
+    name: Rust Unit Tests (tri_shield_core)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run Cargo Tests
+        run: cargo test --verbose --manifest-path crates/tri_shield_core/Cargo.toml
+
+  test-python:
+    name: Python Benchmarks & Rigor Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r benchmarks/requirements.txt
+      - name: Run Ablation Suite
+        run: python benchmarks/run_ablation_suite.py
+      - name: Run External Leaderboards Suite
+        run: python benchmarks/run_external_leaderboards.py
+      - name: Run Pytest
+        run: pytest tests/
