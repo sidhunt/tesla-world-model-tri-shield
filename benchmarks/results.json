@@ -1,81 +1,124 @@
 {
-  "benchmark": "Quad-Shield Latent World Model OOD, Neuromorphic Compute & Production Trade-Off Falsification Suite",
+  "benchmark": "Quad-Shield Latent World Model Paired OOD & Neuromorphic Compute Ablation Suite",
+  "methodology": "Paired Control Evaluation: all 6 arms evaluated on the exact same 10,000 deterministic scenarios",
   "trials_per_arm": 10000,
   "total_trials": 60000,
-  "wall_time_ms": 78.91,
-  "per_step_overhead_us": 1.315,
+  "wall_time_ms": 185.98,
+  "per_trial_us": 3.1,
   "arms": {
     "unshielded": {
       "trials": 10000,
-      "collision_rate_pct": 31.37,
-      "spinout_rate_pct": 37.81,
-      "total_failure_rate_pct": 63.48,
-      "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0,
-      "real_systolic_gpu_speedup_x": 1.0,
-      "phantom_brake_false_positive_pct": 2.1,
-      "added_hardware_bom_usd": 0,
-      "actuator_lag_compensated_ms": 0
+      "empirical_measured": {
+        "collision_rate_pct": 32.19,
+        "spinout_rate_pct": 37.86,
+        "total_failure_rate_pct": 64.57,
+        "ttc_subscore": 0.197,
+        "ego_progress_subscore": 0.354,
+        "comfort_subscore": 0.29,
+        "measured_phantom_brake_pct": 0.0,
+        "attention_compute_pct": 100.0
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 0,
+        "structured_tile_sparsity_pct": 0.0,
+        "projected_systolic_speedup_x": 1.0,
+        "actuator_lag_compensated_ms": 0
+      }
     },
     "s1": {
       "trials": 10000,
-      "collision_rate_pct": 26.64,
-      "spinout_rate_pct": 54.3,
-      "total_failure_rate_pct": 73.03,
-      "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0,
-      "real_systolic_gpu_speedup_x": 1.0,
-      "phantom_brake_false_positive_pct": 14.2,
-      "added_hardware_bom_usd": 0,
-      "actuator_lag_compensated_ms": 0
+      "empirical_measured": {
+        "collision_rate_pct": 27.31,
+        "spinout_rate_pct": 52.32,
+        "total_failure_rate_pct": 72.0,
+        "ttc_subscore": 0.286,
+        "ego_progress_subscore": 0.264,
+        "comfort_subscore": 0.049,
+        "measured_phantom_brake_pct": 3.27,
+        "attention_compute_pct": 100.0
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 0,
+        "structured_tile_sparsity_pct": 0.0,
+        "projected_systolic_speedup_x": 1.0,
+        "actuator_lag_compensated_ms": 0
+      }
     },
     "s1_s2": {
       "trials": 10000,
-      "collision_rate_pct": 27.04,
-      "spinout_rate_pct": 42.67,
-      "total_failure_rate_pct": 64.0,
-      "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0,
-      "real_systolic_gpu_speedup_x": 1.0,
-      "phantom_brake_false_positive_pct": 14.2,
-      "added_hardware_bom_usd": 0,
-      "actuator_lag_compensated_ms": 0
+      "empirical_measured": {
+        "collision_rate_pct": 27.7,
+        "spinout_rate_pct": 40.27,
+        "total_failure_rate_pct": 62.35,
+        "ttc_subscore": 0.282,
+        "ego_progress_subscore": 0.359,
+        "comfort_subscore": 0.17,
+        "measured_phantom_brake_pct": 3.27,
+        "attention_compute_pct": 100.0
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 0,
+        "structured_tile_sparsity_pct": 0.0,
+        "projected_systolic_speedup_x": 1.0,
+        "actuator_lag_compensated_ms": 0
+      }
     },
     "tri_shield": {
       "trials": 10000,
-      "collision_rate_pct": 10.07,
-      "spinout_rate_pct": 0.0,
-      "total_failure_rate_pct": 10.07,
-      "world_model_attention_compute_pct": 100.0,
-      "token_sparsity_pruned_pct": 0.0,
-      "real_systolic_gpu_speedup_x": 1.0,
-      "phantom_brake_false_positive_pct": 14.2,
-      "added_hardware_bom_usd": 0,
-      "actuator_lag_compensated_ms": 0
+      "empirical_measured": {
+        "collision_rate_pct": 9.41,
+        "spinout_rate_pct": 0.0,
+        "total_failure_rate_pct": 9.41,
+        "ttc_subscore": 0.464,
+        "ego_progress_subscore": 0.766,
+        "comfort_subscore": 0.26,
+        "measured_phantom_brake_pct": 3.27,
+        "attention_compute_pct": 100.0
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 0,
+        "structured_tile_sparsity_pct": 0.0,
+        "projected_systolic_speedup_x": 1.0,
+        "actuator_lag_compensated_ms": 0
+      }
     },
     "quad_shield": {
       "trials": 10000,
-      "collision_rate_pct": 8.78,
-      "spinout_rate_pct": 0.0,
-      "total_failure_rate_pct": 8.78,
-      "world_model_attention_compute_pct": 0.58,
-      "token_sparsity_pruned_pct": 92.4,
-      "real_systolic_gpu_speedup_x": 4.2,
-      "phantom_brake_false_positive_pct": 14.2,
-      "added_hardware_bom_usd": 1200,
-      "actuator_lag_compensated_ms": 0
+      "empirical_measured": {
+        "collision_rate_pct": 8.04,
+        "spinout_rate_pct": 0.0,
+        "total_failure_rate_pct": 8.04,
+        "ttc_subscore": 0.478,
+        "ego_progress_subscore": 0.778,
+        "comfort_subscore": 0.257,
+        "measured_phantom_brake_pct": 3.27,
+        "attention_compute_pct": 0.58
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 1200,
+        "structured_tile_sparsity_pct": 92.4,
+        "projected_systolic_speedup_x": 4.2,
+        "actuator_lag_compensated_ms": 0
+      }
     },
     "prod_quad_shield": {
       "trials": 10000,
-      "collision_rate_pct": 9.1,
-      "spinout_rate_pct": 0.0,
-      "total_failure_rate_pct": 9.1,
-      "world_model_attention_compute_pct": 4.62,
-      "token_sparsity_pruned_pct": 78.5,
-      "real_systolic_gpu_speedup_x": 11.4,
-      "phantom_brake_false_positive_pct": 0.18,
-      "added_hardware_bom_usd": 0,
-      "actuator_lag_compensated_ms": 60
+      "empirical_measured": {
+        "collision_rate_pct": 8.84,
+        "spinout_rate_pct": 0.0,
+        "total_failure_rate_pct": 8.84,
+        "ttc_subscore": 0.466,
+        "ego_progress_subscore": 0.779,
+        "comfort_subscore": 0.259,
+        "measured_phantom_brake_pct": 0.0,
+        "attention_compute_pct": 4.62
+      },
+      "hardware_and_silicon_tradeoffs": {
+        "added_hardware_bom_usd": 0,
+        "structured_tile_sparsity_pct": 78.5,
+        "projected_systolic_speedup_x": 11.4,
+        "actuator_lag_compensated_ms": 60
+      }
     }
   }
 }
